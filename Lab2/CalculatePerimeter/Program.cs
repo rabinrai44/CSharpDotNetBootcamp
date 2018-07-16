@@ -15,8 +15,8 @@ namespace CalculatePerimeter
             // Declaring variables 
             double Length;
             double Width;
-            double area;
-            double perimeter;
+            double Area;
+            double Perimeter;
             bool StartAgain = true;
 
             // Starting program with while loop where program have StartAgain = true 
@@ -30,21 +30,21 @@ namespace CalculatePerimeter
                 Width = Convert.ToDouble(Console.ReadLine());
 
                 // Calculate the area of the room
-                area = Length * Width;
+                Area = Length * Width;
 
                 // Calculate the Perimeter of the room
-                perimeter = 2 * (Width + Length);
+                Perimeter = 2 * (Width + Length);
 
                 // Print all the result to the user into console
-                Console.WriteLine("The area of room is: " + area);
-                Console.WriteLine("The perimeter of room is: " + perimeter);
+                Console.WriteLine("The area of room is: " + Area);
+                Console.WriteLine("The perimeter of room is: " + Perimeter);
 
                 // Ask the users if do they want to run program again
                 Console.WriteLine("Do you want to continue run the program? Y/N");
-                string answer = Console.ReadLine();
+                string Answer = Console.ReadLine();
 
                 // Check the user input then if doesn't match with given value StartAgain = false and exit program
-                if (answer != "Y")
+                if (Answer != "Y")
                 {
                     StartAgain = false;
                     Console.WriteLine("Exiting..");
