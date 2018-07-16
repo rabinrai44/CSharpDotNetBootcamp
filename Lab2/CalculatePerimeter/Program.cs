@@ -41,13 +41,13 @@ namespace CalculatePerimeter
 
                 // Ask the users if do they want to run program again
                 Console.WriteLine("Do you want to continue run the program? Y/N");
-                string Answer = Console.ReadLine();
+                char Answer = Console.ReadKey().KeyChar;
 
                 // Check the user input then if doesn't match with given value StartAgain = false and exit program
-                if (Answer != "Y")
+                if (Answer != 'y')
                 {
                     StartAgain = false;
-                    Console.WriteLine("Exiting..");
+                    Console.WriteLine("\nExiting..");
                 }
             }
 
