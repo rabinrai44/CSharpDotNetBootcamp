@@ -30,12 +30,7 @@ namespace Lab5
                     // valid the input number
                     if (num > 0 && num < 10)
                     {
-                        long factorial = 1;
-
-                        for (int i = 1; i <= num; i++)
-                        {
-                            factorial *= i;
-                        }
+                        long factorial = CalculateFactorial(num);
                         Console.WriteLine("\nThe factorial of {0} is {1} ", num, factorial + ".");
                     }
                     else
@@ -46,13 +41,27 @@ namespace Lab5
                 else
                 {
                     Console.WriteLine("\nHmm, you put string, please try again with integer!\n");
-                }
-               
+                }               
 
                 PlayAgain();                
             }
             Console.ReadKey();
         } 
+
+        //CalculateFactorial method does take a number and return the factorial sum of given number
+        public static long CalculateFactorial(int num)
+        {
+            if (num == 0)
+                return 1;
+            long factorial = 1;
+
+            for (int i = num; i >= 1; i--)
+            {
+                factorial = factorial * i;
+            }
+
+            return factorial;
+        }
         
         //PlayAgain function does ask the user wish to play again the program and accept the input from user
         public static void PlayAgain()
