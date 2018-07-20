@@ -27,7 +27,7 @@ namespace Lab5
                     // valid the input number
                     if (num > 0 && num <= 10)
                     {
-                        int factorial = 1;
+                        long factorial = 1;
 
                         for (int i = 1; i <= num; i++)
                         {
@@ -37,7 +37,7 @@ namespace Lab5
                     }
                     else
                     {
-                        Console.WriteLine("\nOps!It must be between 1-10");
+                        Console.WriteLine("\nOps!It must be between 1-10\n");
                     }
                 }
                 else
@@ -54,7 +54,7 @@ namespace Lab5
         //PlayAgain function does ask the user wish to play again the program and accept the input from user
         public static void PlayAgain()
         {
-            Console.Write("Continue y/n ?\t");
+            Console.Write("\nContinue y/n ?\t");
             var userInput = Console.ReadKey().KeyChar;
 
             if (userInput != 'y')
