@@ -17,23 +17,34 @@ namespace Lab5
             {
                 // initial prompt
                 Console.Write("\nEnter an integer from 1 to 10:\t");
-                int num = int.Parse(Console.ReadLine());
+                string inputInteger = Console.ReadLine();
 
-                // valid the input number
-                if (num >0 && num <= 10)
+                // check user input is an integer or not
+                if (int.TryParse(inputInteger, out int x))
                 {
-                    int factorial = 1;
+                    int num = int.Parse(inputInteger);
 
-                    for (int i = 1; i <= num; i++)
+                    // valid the input number
+                    if (num > 0 && num <= 10)
                     {
-                        factorial *= i;
+                        int factorial = 1;
+
+                        for (int i = 1; i <= num; i++)
+                        {
+                            factorial *= i;
+                        }
+                        Console.WriteLine(factorial);
                     }
-                    Console.WriteLine(factorial);
+                    else
+                    {
+                        Console.WriteLine("\nOps!It must be between 1-10");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("\nOps!It must be between 1-10");
+                    Console.WriteLine("\nHmm, you put string, please try again with integer!\n");
                 }
+               
 
                 PlayAgain();                
             }
