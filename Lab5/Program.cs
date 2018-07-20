@@ -12,11 +12,14 @@ namespace Lab5
 
         static void Main(string[] args)
         {
+            // welcome!
+            Console.WriteLine("Welcome to the Factorial Calculator!");
+
             // starting program here through the loop
-            while(shouldContinue)
+            while (shouldContinue)
             {
-                // initial prompt
-                Console.Write("\nEnter an integer from 1 to 10:\t");
+                // initial prompt                
+                Console.Write("\nEnter an integer that's greater than 0 but less than 10:\t");
                 string inputInteger = Console.ReadLine();
 
                 // check user input is an integer or not
@@ -25,7 +28,7 @@ namespace Lab5
                     int num = int.Parse(inputInteger);
 
                     // valid the input number
-                    if (num > 0 && num <= 10)
+                    if (num > 0 && num < 10)
                     {
                         long factorial = 1;
 
@@ -33,11 +36,11 @@ namespace Lab5
                         {
                             factorial *= i;
                         }
-                        Console.WriteLine(factorial);
+                        Console.WriteLine("\nThe factorial of {0} is {1} ", num, factorial + ".");
                     }
                     else
                     {
-                        Console.WriteLine("\nOps!It must be between 1-10\n");
+                        Console.WriteLine("\nOps! It must be greater than 0 but less than 10\n");
                     }
                 }
                 else
