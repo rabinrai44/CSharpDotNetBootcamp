@@ -21,8 +21,6 @@ namespace FindUpdateStudentInformation
 
                     //getting data from array
                     string name = GetStudentName(inputNumber);
-                    string food = GetFavoriteFood(inputNumber);
-                    string home = GetHomeTown(inputNumber);
 
                     //set default bool true
                     bool inputYes = true;
@@ -38,10 +36,12 @@ namespace FindUpdateStudentInformation
                         switch (input)
                         {
                             case "hometown":
+                                string home = GetHomeTown(inputNumber);
                                 Console.WriteLine($"\n{name} is from {home}. Would you like to know more? (enter yes or no): ");
                                 break;
 
                             case "favorite food":
+                                string food = GetFavoriteFood(inputNumber);
                                 Console.WriteLine($"\n{name}s favorite food is {food}. Would you like to know more? (enter yes or no): ");
                                 break;
 
