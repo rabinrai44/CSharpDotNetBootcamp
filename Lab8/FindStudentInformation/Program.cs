@@ -13,7 +13,7 @@ namespace FindStudentInformation
         {
             do
             {
-                Console.WriteLine("\nWelcome to our C# class. Which student would you like to learn more about? (enter a number 1-20)");
+                Console.WriteLine("\nWelcome to our C# class.\n Which student would you like to learn more about? (enter a number 1-20)");
                 int inputNumber = int.Parse(Console.ReadLine());
 
                 try
@@ -32,18 +32,22 @@ namespace FindStudentInformation
                         if (Equals(inputOption, homeTown))
                         {
                             Console.WriteLine($"\n{GetStudentName(inputNumber)} is from {GetHomeTown(inputNumber)}. Would you like to know more? (enter yes or no):");
-                            var inputAgain = Console.ReadLine();
+                           
                         }
                         else if (Equals(inputOption, favoriteFood))
                         {
                             Console.WriteLine($"\n{GetStudentName(inputNumber)} favorite food is {GetFavoriteFood(inputNumber)}. Would you like to know more? (enter yes or no):");
-                            var inputAgain = Console.ReadLine();
+                            
                         }
                         else
                         {
                             Console.WriteLine("That does not exist. Please try again. (enter or hometown or favorite food");
                         }
-                        
+                        var inputAgain = Console.ReadKey().KeyChar;
+                        if (inputAgain != 'y')
+                        {
+                            doAgain = false;
+                        }
                     };
                    
 
