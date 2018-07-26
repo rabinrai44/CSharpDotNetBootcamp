@@ -13,48 +13,60 @@ namespace FindStudentInformation
         {
             do
             {
-                Console.WriteLine("\nWelcome to our C# class.\n Which student would you like to learn more about? (enter a number 1-20)");
-                int inputNumber = int.Parse(Console.ReadLine());
-
                 try
                 {
-                    string homeTown = "hometown";
-                    string favoriteFood = "favorite food";
-                    string inputYes = "yes";
+                    Console.WriteLine("\nWelcome to our C# class.\n Which student would you like to learn more about? (enter a number 1-20)");
+                    int inputNumber = int.Parse(Console.ReadLine());
 
-
-                    Console.Write($"\nStudent {inputNumber} is {GetStudentName(inputNumber)}. What would you like to know about {GetStudentName(inputNumber)}? (enter or hometown or favorite food):", GetStudentName(inputNumber));
-
-                    var inputOption = Console.ReadLine();
-                    bool doAgain = true;
-                    while (doAgain)
+                    if (inputNumber > 0 && inputNumber < 20)
                     {
-                        if (Equals(inputOption, homeTown))
-                        {
-                            Console.WriteLine($"\n{GetStudentName(inputNumber)} is from {GetHomeTown(inputNumber)}. Would you like to know more? (enter yes or no):");
-                           
-                        }
-                        else if (Equals(inputOption, favoriteFood))
-                        {
-                            Console.WriteLine($"\n{GetStudentName(inputNumber)} favorite food is {GetFavoriteFood(inputNumber)}. Would you like to know more? (enter yes or no):");
-                            
-                        }
-                        else
-                        {
-                            Console.WriteLine("That does not exist. Please try again. (enter or hometown or favorite food");
-                        }
-                        var inputAgain = Console.ReadKey().KeyChar;
-                        if (inputAgain != 'y')
-                        {
-                            doAgain = false;
-                        }
-                    };
-                   
+                        //getting data from array
+                        string name = GetStudentName(inputNumber);
 
+                        //set default bool true
+                        bool inputYes = true;
+
+                        //loop after user input number
+                        while (inputYes)
+                        {
+                            //student information
+                            Console.WriteLine($"\nStudent {inputNumber} is {name}. What would you like to know about {name}? (enter or hometown or favorite food): ");
+
+                            var input = Console.ReadLine();
+
+                            switch (input)
+                            {
+                                case "hometown":
+                                    string home = GetHomeTown(inputNumber);
+                                    Console.WriteLine($"\n{name} is from {home}. Would you like to know more? (enter yes or no): ");
+                                    break;
+
+                                case "favorite food":
+                                    string food = GetFavoriteFood(inputNumber);
+                                    Console.WriteLine($"\n{name}s favorite food is {food}. Would you like to know more? (enter yes or no): ");
+                                    break;
+
+                                default:
+                                    Console.WriteLine("\nThat data does not exist. Please try again. (enter or hometown or favorite food");
+                                    break;
+                            }
+                            //taking user response to more info
+                            var inputAgain = Char.ToLower(Console.ReadKey().KeyChar);
+
+                            if (inputAgain != 'y')
+                            {
+                                inputYes = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("That does not exist. Please try again. (enter a number 1-20): ");
+                    }
                 }
-                catch (IndexOutOfRangeException ex)
+                catch (FormatException ex)
                 {
-                    Console.WriteLine("That student does not exist. Please try again. (enter a number 1-20)", ex);
+                    Console.WriteLine(ex.Message);
                 }
 
                 if (!ShouldContinue())
