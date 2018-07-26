@@ -8,15 +8,18 @@ namespace FindUpdateStudentInformation
 {
     class Program
     {
+        private static Stack<string> _studentManagement;
+
+
         static void Main(string[] args)
         {
+            Console.WriteLine("\n======================================================\n" + "\tWelcome to our C# .NET Bootcamp class\n" + "======================================================\n\n");
             do
             {
                 try
                 {
                     //user prompt
-                    Console.WriteLine("\n======================================================\n" + "\tWelcome to our C# .NET Bootcamp class\n" + "======================================================\n\n" +
-                        "Which student would you like to learn more about? (enter a number 1-20)");
+                    Console.WriteLine("What would you like to (learn), (favorite number), (favorite color)");
                     int inputNumber = int.Parse(Console.ReadLine());
 
                     //getting data from array
@@ -36,13 +39,22 @@ namespace FindUpdateStudentInformation
                         switch (input)
                         {
                             case "hometown":
-                                string home = GetHomeTown(inputNumber);
-                                Console.WriteLine($"\n{name} is from {home}. Would you like to know more? (enter yes or no): ");
+                                
                                 break;
 
                             case "favorite food":
                                 string food = GetFavoriteFood(inputNumber);
                                 Console.WriteLine($"\n{name}s favorite food is {food}. Would you like to know more? (enter yes or no): ");
+                                break;
+
+                            case "favorite color":
+                                string color = GetFavoriteColor(inputNumber);
+                                Console.WriteLine($"\n{name}s favorite color is {color}. Would you like to know more? (enter yes or no): ");
+                                break;
+
+                            case "favorite number":
+                                int number = GetFavoriteNumber(inputNumber);
+                                Console.WriteLine($"\n{name}s favorite number is {number}. Would you like to know more? (enter yes or no): ");
                                 break;
 
                             default:
@@ -109,7 +121,7 @@ namespace FindUpdateStudentInformation
                 "Bread", "Subway", "Rice", "Big Mac", "Subway", "Sereal", "Popcorn", "Ham Burger", "Mac Chicken", "Big Mac",
                 "Bread", "Rice", "Dedo", "Hot turkey soup", "Bean soup","Meat ball","Chamre", "Kodo ko dhedo", "Hot soup", "Mosrum"
             };
-
+            
             return foods[number];
         }
 
@@ -124,6 +136,22 @@ namespace FindUpdateStudentInformation
             return hometowns[hometown];
         }
 
-       
+        //get favorite color
+        private static string GetFavoriteColor(int color)
+        {
+            List<string> colors = new List<string> { "Green", "Red", "Red", "Purple", "Blue", "Green", "Blue", "Brown", "Grey", "Purple", "Green", "Black", "White", "Red", "Sky Blue", "Green", "Green", "Red", "Blue", "Purple"};
+
+            return colors[color];
+        }
+
+
+        //get favorite number 
+        private static int GetFavoriteNumber(int number)
+        {
+            List<int> numbers = new List<int> { 2, 5, 6, 77, 44, 21, 38, 5, 45, 66, 88, 45, 1, 100, 154, 200, 60, 77, 99, 100};
+
+            return numbers[number];
+        }
+
     }
 }
