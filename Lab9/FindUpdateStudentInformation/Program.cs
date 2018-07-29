@@ -6,152 +6,214 @@ using System.Threading.Tasks;
 
 namespace FindUpdateStudentInformation
 {
+    /// <summary>
+    /// Student Class that provide the all require properties
+    /// that can access whether calling it
+    /// </summary>
+    public class Student
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string HomeTown { get; set; }
+        public string Food { get; set; }
+        public string Color { get; set; }
+        public int FavoriteNumber { get; set; }
+
+        //Student Constructor passing the value through argument
+        public Student(int id, string name, string hometown, string food, string color, int num)
+        {
+            this.ID = id;
+            this.Name = name;
+            this.HomeTown = hometown;
+            this.Food = food;
+            this.Color = color;
+            this.FavoriteNumber = num;
+        }
+    }
+
     class Program
     {
-        private static Stack<string> _studentManagement;
-
+        //List
+        static List<Student> Students = new List<Student>();
+        static bool preLoop = true;
+        static bool ShouldContinueInside = true;
 
         static void Main(string[] args)
         {
-            Console.WriteLine("\n======================================================\n" + "\tWelcome to our C# .NET Bootcamp class\n" + "======================================================\n\n");
+            //initial header
+            Console.WriteLine("\n=============================================================\n\tWelcome to the Grand Circus C#.NET Bootcamp!\n=============================================================\n");
+
             do
             {
+                Console.WriteLine("\nMENU OPTIONS");
+                Console.WriteLine("1 - Learn about individual students\n2 - Fun Stuff\n3 - Exit program\n");
+
                 try
                 {
-                    //user prompt
-                    Console.WriteLine("What would you like to (learn), (favorite number), (favorite color)");
-                    int inputNumber = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Please select the option showing above, What would you want to know?");
 
-                    //getting data from array
-                    string name = GetStudentName(inputNumber);
+                    int userReponse = int.Parse(Console.ReadLine());
 
-                    //set default bool true
-                    bool inputYes = true;
-
-                    //loop after user input number
-                    while (inputYes)
+                    switch (userReponse)
                     {
-                        //student information
-                        Console.WriteLine($"\nStudent {inputNumber} is {name}. What would you like to know about {name}? (enter or hometown or favorite food): ");
+                        case 1:
+                            LearnStudentDetails();
+                            break;
 
-                        var input = Console.ReadLine();
+                        case 2:
+                            //only testing
+                            Console.WriteLine("Hi there! Nice to meet you!"); ;
+                            break;
 
-                        switch (input)
-                        {
-                            case "hometown":
-                                
-                                break;
+                        case 3:
+                            preLoop = false;
+                            Console.WriteLine("\nGoodbye! Thanks for visit.");
 
-                            case "favorite food":
-                                string food = GetFavoriteFood(inputNumber);
-                                Console.WriteLine($"\n{name}s favorite food is {food}. Would you like to know more? (enter yes or no): ");
-                                break;
-
-                            case "favorite color":
-                                string color = GetFavoriteColor(inputNumber);
-                                Console.WriteLine($"\n{name}s favorite color is {color}. Would you like to know more? (enter yes or no): ");
-                                break;
-
-                            case "favorite number":
-                                int number = GetFavoriteNumber(inputNumber);
-                                Console.WriteLine($"\n{name}s favorite number is {number}. Would you like to know more? (enter yes or no): ");
-                                break;
-
-                            default:
-                                Console.WriteLine("\nThat data does not exist. Please try again. (enter or hometown or favorite food");
-                                break;
-                        }
-                        //taking user response to more info
-                        var inputAgain = Char.ToLower(Console.ReadKey().KeyChar);
-
-                        if (inputAgain != 'y')
-                        {
-                            inputYes = false;
-                        }
+                            break;
+                        default:
+                            Console.WriteLine("Hmm, that's not exist! try again");
+                            break;
                     }
-                   
                 }
-                catch(FormatException ex)
+                catch (FormatException ex)
                 {
                     Console.WriteLine(ex.Message);
                 }
-                catch(ArgumentOutOfRangeException)
-                {
-                    Console.WriteLine("That does not exist. Please tray again. (enter a number 1-20): ");
-                }
-                
-                
-                //stop program when user hit n
-                if(!ShouldContinue())
-                {
-                    break;
-                }
 
-            } while (true);
-            
+                Console.Write("Would you like to continue (y/n)?");
+                var res = char.ToLower(Console.ReadKey().KeyChar);
+
+                if (res != 'y')
+                    preLoop = false;
+
+
+            } while (preLoop);
+
             Console.ReadKey();
         }
 
-        //shouldcontinue
+        //public static void DisplayAllStudent()
+        //{
+        //    Console.WriteLine("Student ID\t Student Name");
+        //    Console.WriteLine("================================================");
+        //    foreach(Student item in Students)
+        //    {
+        //        Console.WriteLine(item.ID+ "\t" +item.Name);
+        //    }
+        //    Console.WriteLine();
+        //}
+
+        //add student
+        private static void AddStudent()
+        {
+            throw new NotImplementedException();
+        }
+
+        //Students details information
+        private static void LearnStudentDetails()
+        {
+            GetStudentInformation();
+
+            Console.WriteLine($"Which student do you want to learn more? Enter a number 1-{Students.Count}");
+
+            if (!int.TryParse(Console.ReadLine(), out int id) || id > Students.Count)
+            {
+                Console.WriteLine("That does not exist. Please try again");
+            }
+            else
+            {
+                Student student = Students[id - 1];
+                Console.WriteLine($"Student {student.ID} is {student.Name}");
+
+                while (ShouldContinueInside)
+                {
+                    Console.WriteLine($"What would you like to know about {student.Name}?");
+
+                    string userChoice = Console.ReadLine();
+
+                    switch (userChoice)
+                    {
+                        case "hometown":
+                        case "home town":
+                        case "home":
+                            Console.WriteLine($"{student.Name} from {student.HomeTown}.");
+                            break;
+                        case "food":
+                        case "favorite food":
+                            Console.WriteLine($"{student.Name} favorite food is {student.Food}.");
+                            break;
+                        case "color":
+                        case "favorite color":
+                            Console.WriteLine($"{student.Name} favorite color is {student.Color}.");
+                            break;
+                        case "number":
+                            Console.WriteLine($"{student.Name} favorite number is {student.FavoriteNumber}.");
+                            break;
+
+                        default:
+                            Console.WriteLine("That's doesn't exist. Please try \"hometown\" or, \"food\" ");
+                            break;
+                    }
+
+                    //Ask user to know more
+                    Console.Write($"Would you like to know more (y/n)?", 5);
+                    string inputYes = Console.ReadLine().ToLower();
+                    ShouldContinueInside = (inputYes == "y" || inputYes == "yes");
+                }
+            }
+        }
+
+        /// <summary>
+        /// All Student Informations including student name, student id, favorite food, 
+        /// home town, favorite color, favorite number
+        /// People can access the all students whether input is correct
+        /// </summary>
+        private static void GetStudentInformation()
+        {
+            Student student;
+
+            student = new Student(1, "Rabin", "Kentwood", "Pizza", "Green", 44);
+            Students.Add(student);
+            student = new Student(2, "Bruce", "Grand Rapids", "Pizza", "Brown", 99);
+            Students.Add(student);
+            student = new Student(3, "Sean S", "Grand Rapids", "Shusi", "White", 121);
+            Students.Add(student);
+            student = new Student(4, "Sean A", "Grand Rapids", "Steak", "Red", 321);
+            Students.Add(student);
+            student = new Student(5, "Jacob", "Lansing", "Burger", "Purple", 564);
+            Students.Add(student);
+            student = new Student(6, "Mike", "Grand Rapids", "Pizza", "Green", 652);
+            Students.Add(student);
+            student = new Student(7, "Michael", "Wyoming", "Burger", "Black", 320);
+            Students.Add(student);
+            student = new Student(8, "Bradley", "Grand Rapids", "Shusi", "Blue", 55);
+            Students.Add(student);
+            student = new Student(9, "Catherine", "Grand Rapids", "Shusi", "White", 121);
+            Students.Add(student);
+            student = new Student(10, "Chris", "Grand Rapids", "Lasana", "White", 56);
+            Students.Add(student);
+            student = new Student(11, "Aquoinette", "Grand Rapids", "Chips", "White", 66);
+            Students.Add(student);
+            student = new Student(12, "Ross", "Grandville", "Shusi", "White", 99);
+            Students.Add(student);
+        }
+
+
+        //looping program
         private static bool ShouldContinue()
+
         {
             do
             {
-                Console.WriteLine("Do you want to continue (y/n) ?");
+                Console.Write("\nWould you like to Continue? (y/n)");
                 var userInput = Char.ToLower(Console.ReadKey().KeyChar);
+
                 if (userInput != 'y' && userInput != 'n')
                     continue;
-                return userInput == 'y';
+                else
+                    return userInput == 'y';
             } while (true);
+
         }
-
-        //student name
-        private static string GetStudentName(int number)
-        {
-            List<string> students = new List<string> { "Sean S", "Jacob Hands", "Rabin Rai", "Bruc T", "Chris A", "Sean A", "Michael Clark", "Michael M", "Aquoin A", "Ross",
-                "Bradly", "Ricky B", "Laxmi K", "Mum L", "Donna W", "Kevin W","Peggy B","Khem G", "Hem G", "Eunice R" };
-            
-            return students[number];
-        }
-
-        //student favorite foods
-        private static string GetFavoriteFood(int number)
-        {
-            List<string> foods = new List<string>  {
-                "Bread", "Subway", "Rice", "Big Mac", "Subway", "Sereal", "Popcorn", "Ham Burger", "Mac Chicken", "Big Mac",
-                "Bread", "Rice", "Dedo", "Hot turkey soup", "Bean soup","Meat ball","Chamre", "Kodo ko dhedo", "Hot soup", "Mosrum"
-            };
-            
-            return foods[number];
-        }
-
-        //student hometown
-        private static string GetHomeTown(int hometown)
-        {
-            List<string> hometowns = new List<string> {
-                "Grand Rapids, MI", "Lansing, MI", "Kentwood, MI", "Grand Rapids, MI", "Grand Rapids, MI", "Grand Rapids, MI", "Kentwood, MI", "Grand Rapids, MI", "Kentwood, MI", "Grand Rapids, MI",
-                "Detroit, MI", "Detroit, MI", "Grand Rapids, MI", "Grand Rapids, MI", "Grand Rapids, MI", "Grand Rapids, MI","Holland, MI","Battle Greek, MI", "Wyoming, MI", "Kentwood, MI", "Grand Rapids, MI"
-            };
-
-            return hometowns[hometown];
-        }
-
-        //get favorite color
-        private static string GetFavoriteColor(int color)
-        {
-            List<string> colors = new List<string> { "Green", "Red", "Red", "Purple", "Blue", "Green", "Blue", "Brown", "Grey", "Purple", "Green", "Black", "White", "Red", "Sky Blue", "Green", "Green", "Red", "Blue", "Purple"};
-
-            return colors[color];
-        }
-
-
-        //get favorite number 
-        private static int GetFavoriteNumber(int number)
-        {
-            List<int> numbers = new List<int> { 2, 5, 6, 77, 44, 21, 38, 5, 45, 66, 88, 45, 1, 100, 154, 200, 60, 77, 99, 100};
-
-            return numbers[number];
-        }
-
     }
 }
