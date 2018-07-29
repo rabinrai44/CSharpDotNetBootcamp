@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculateCircumferenceAndArea", "CalculateCircumferenceAndArea\CalculateCircumferenceAndArea.csproj", "{B8F55E06-9F66-48CD-9264-986B1B7D82B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Circles.Library", "Circles.Library\Circles.Library.csproj", "{B36A2346-E383-41D3-AEC5-1C5A30AD8C42}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8F55E06-9F66-48CD-9264-986B1B7D82B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8F55E06-9F66-48CD-9264-986B1B7D82B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8F55E06-9F66-48CD-9264-986B1B7D82B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8F55E06-9F66-48CD-9264-986B1B7D82B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B36A2346-E383-41D3-AEC5-1C5A30AD8C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B36A2346-E383-41D3-AEC5-1C5A30AD8C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B36A2346-E383-41D3-AEC5-1C5A30AD8C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B36A2346-E383-41D3-AEC5-1C5A30AD8C42}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD48344B-9249-4078-8E4D-AE5E778B19C7}
+	EndGlobalSection
+EndGlobal
