@@ -25,8 +25,7 @@ namespace Circles.Library
         //Calculate the formatted circumference
         public string CalculateFormattedCircumference()
         {
-            var formatted = Math.Round(CalculateCircumference(), 2);
-            return ((double)formatted).ToString();
+            return FormatNumber(CalculateCircumference());
         }
 
         //Calculate the area of circle
@@ -39,25 +38,14 @@ namespace Circles.Library
         //Calculate the formatted area of circle
         public string CalculateFormattedArea()
         {
-            //lLttle different method that format and return the value only 2 decimal places
-            //can use Math.Round() function as well
-            var formattedArea = string.Format("{0:0.00}", CalculateArea()).ToString();
-
-            if (formattedArea.EndsWith("00"))
-            {
-                return ((double)CalculateArea()).ToString();
-            }
-            else
-            {
-                return formattedArea;
-            }
+           return FormatNumber(CalculateArea());
         }
 
         //Format the number
-        //private string FormatNumber(double x)
-        //{
-          
-        //}
+        private string FormatNumber(double x)
+        {
+            return $"{x:N}";
+        }
 
 
     }
